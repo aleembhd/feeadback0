@@ -2713,15 +2713,15 @@
             }
         });
 
-        // Add password toggle functionality for the new admin password field
+        // Add eye/lock toggle functionality with password visibility
         document.getElementById('newPasswordToggle').addEventListener('click', function() {
             const passwordInput = document.getElementById('newAdminPassword');
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
+            if (this.textContent === '👁️') {
                 this.textContent = '🔒';
+                passwordInput.type = 'text';  // Show password
             } else {
-                passwordInput.type = 'password';
                 this.textContent = '👁️';
+                passwordInput.type = 'password';  // Hide password
             }
         });
     </script>
