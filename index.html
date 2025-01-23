@@ -2712,6 +2712,18 @@
                 successMessage.classList.remove('show');
             }
         });
+
+        // Add password toggle functionality for the new admin password field
+        document.getElementById('newPasswordToggle').addEventListener('click', function() {
+            const passwordInput = document.getElementById('newAdminPassword');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.textContent = '🔒';
+            } else {
+                passwordInput.type = 'password';
+                this.textContent = '👁️';
+            }
+        });
     </script>
     
     <footer style="position: fixed; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 0.8rem; color: var(--accent-color);">
