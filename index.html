@@ -920,8 +920,8 @@
             <div class="input-container">
                 <input type="email" id="newAdminEmail" class="credential-input" value="admin@gmail.com" readonly style="background-color: #f0f0f0; cursor: copy;" placeholder="Email">
                 <div class="password-container">
-                    <input type="password" id="newAdminPassword" class="credential-input" placeholder="Create new password">
-                    <span class="password-toggle" id="newPasswordToggle">👁️</span>
+                    <input type="password" id="newAdminPassword" class="credential-input" placeholder="Create new password" style="width: calc(100% - 60px); display: inline-block;">
+                    <button id="togglePasswordBtn" onclick="toggleButtonText()" style="width: 50px; height: 35px; margin-left: 5px; background: black; color: white; border: none; border-radius: 5px; cursor: pointer;">Show</button>
                 </div>
             </div>
             <button id="createAccountBtn" class="submit-btn">Save Changes</button>
@@ -2713,17 +2713,35 @@
             }
         });
 
-        // Add eye/lock toggle functionality with password visibility
-        document.getElementById('newPasswordToggle').addEventListener('click', function() {
+        // Add the toggle functionality
+        const toggleBtn = document.getElementById('togglePasswordBtn');
+        const passwordInput = document.getElementById('newAdminPassword');
+
+        if (toggleBtn && passwordInput) {
+            toggleBtn.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    toggleBtn.textContent = 'Hide';
+                } else {
+                    passwordInput.type = 'password';
+                    toggleBtn.textContent = 'Show';
+                }
+            });
+        }
+
+        // Add this new function near the top of your script section
+        function toggleButtonText() {
+            const button = document.getElementById('togglePasswordBtn');
             const passwordInput = document.getElementById('newAdminPassword');
-            if (this.textContent === '👁️') {
-                this.textContent = '🔒';
-                passwordInput.type = 'text';  // Show password
+            
+            if (button.textContent === 'Show') {
+                button.textContent = 'Hide';
+                passwordInput.type = 'text';  // Show the password
             } else {
-                this.textContent = '👁️';
-                passwordInput.type = 'password';  // Hide password
+                button.textContent = 'Show';
+                passwordInput.type = 'password';  // Hide the password
             }
-        });
+        }
     </script>
     
     <footer style="position: fixed; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 0.8rem; color: var(--accent-color);">
